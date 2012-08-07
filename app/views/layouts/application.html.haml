@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title Apprentice Project - Getaways Metrics
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+
+  %body
+    %h1 Getaways Metrics
+    .navbar.navbar-fixed-top
+      #logo
+        %a{:href => "/"}
+          %img{:src => "../assets/groupon_logo.png"}
+      .navbar-inner
+        .container
+          .nav-collapse.collapse
+
+    .row-fluid
+      .span2
+        %dl
+          %dt Getaways
+          %dd
+            %a{:href => "/"} All of Getaways
+
+          %dt.sidemenu Destinations
+          %dd 
+            %a{:href => "/destinations"} US
+          %dd 
+            %a{:href => "/destinations"} Canada
+          %dd 
+            %a{:href => "/destinations"} Mexico, Caribbean, & Latin America
+          %dd 
+            %a{:href => "/destinations"} Europe, Asia, Africa, & Oceania
+
+          %dt.sidemenu Deal Parameters
+          %dd 
+            %a{:href => "/deals"} Select Deal
+          %dd 
+            %a{:href => "/deals"} By Price
+          %dd 
+            %a{:href => "/deals"} By Percentage Discount
+          %dd 
+            %a{:href => "/deals"} By Reservation Date
+          %dd 
+            %a{:href => "/deals"} By Tags
+
+          %dt.sidemenu Metrics
+          %dd
+            = link_to "Cancellations", metric_path(Metric.last.id)
+          %dd
+            = link_to "Bookings", metric_path(Metric.all[-2])
+
+      .span6
+        #title= "Metrics Tracker"
+        #refresh= link_to "Refresh Graph", metric_path(Metric.last.id), :update => "main-graph", :remote => true
+        = yield
+
+      = render "shared/tracking_metrics"
+
+  %footer
+    = debug params
