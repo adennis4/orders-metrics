@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807190122) do
+ActiveRecord::Schema.define(:version => 20120807190801) do
 
   create_table "bookings", :force => true do |t|
     t.string   "name"
@@ -20,4 +20,10 @@ ActiveRecord::Schema.define(:version => 20120807190122) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "cancellations", :force => true do |t|
+    t.string   "name"
+    t.float    "metric_1"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 end

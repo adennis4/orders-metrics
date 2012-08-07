@@ -21,4 +21,6 @@
 
 every 2.minutes do
   rake "booking:update_bookings_table", :environment => "development"
+  rake "cancellation:update_cancellations_table", :environment => "development"
 end
+
