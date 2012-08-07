@@ -1,0 +1,24 @@
+.span4
+  #detail Tracking Metrics
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Metric
+        %th Value
+    %tbody
+      %tr
+        %td Name
+        %td #{@booking.name}
+      %tr
+        %td Tracking Statistic
+        %td #{@booking.metric_1}
+      %tr
+        %td Daily High
+        %td #{@day_high}
+      %tr
+        %td Daily Low
+        %td #{@day_low}
+
+  .hero-unit
+    #mini-graph
+      = javascript_include_tag "application"
