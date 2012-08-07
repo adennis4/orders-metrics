@@ -25,38 +25,37 @@
 
           %dt.sidemenu Destinations
           %dd 
-            %a{:href => "/destinations"} US
+            %a{:href => "/"} US
           %dd 
-            %a{:href => "/destinations"} Canada
+            %a{:href => "/"} Canada
           %dd 
-            %a{:href => "/destinations"} Mexico, Caribbean, & Latin America
+            %a{:href => "/"} Mexico, Caribbean, & Latin America
           %dd 
-            %a{:href => "/destinations"} Europe, Asia, Africa, & Oceania
+            %a{:href => "/"} Europe, Asia, Africa, & Oceania
 
           %dt.sidemenu Deal Parameters
           %dd 
-            %a{:href => "/deals"} Select Deal
+            %a{:href => "/"} Select Deal
           %dd 
-            %a{:href => "/deals"} By Price
+            %a{:href => "/"} By Price
           %dd 
-            %a{:href => "/deals"} By Percentage Discount
+            %a{:href => "/"} By Percentage Discount
           %dd 
-            %a{:href => "/deals"} By Reservation Date
+            %a{:href => "/"} By Reservation Date
           %dd 
-            %a{:href => "/deals"} By Tags
+            %a{:href => "/"} By Tags
 
           %dt.sidemenu Metrics
           %dd
-            = link_to "Cancellations", metric_path(Metric.last.id)
+            = link_to "Cancellations"
           %dd
-            = link_to "Bookings", metric_path(Metric.all[-2])
+            = link_to "Bookings"
 
       .span6
         #title= "Metrics Tracker"
-        #refresh= link_to "Refresh Graph", metric_path(Metric.last.id), :update => "main-graph", :remote => true
+        #refresh= link_to "Refresh Graph"
         = yield
 
-      = render "shared/tracking_metrics"
 
   %footer
     = debug params
