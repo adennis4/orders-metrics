@@ -1,7 +1,12 @@
 class Booking < ActiveRecord::Base
   attr_accessible :metric_1, :name
 
-  def update_bookings_table
+  has_one :cancellation
+
+  validates :name, :presence => true
+  validates :metric_1, :presence => true, :numericality => true
+
+  def update_bookings
     dummy_symbols = ['GOOG']
     dummy_symbols.each do |symbol|
       dummy_data = YahooStock::Quote.new(:stock_symbols => symbol)

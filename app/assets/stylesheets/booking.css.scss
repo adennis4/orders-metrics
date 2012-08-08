@@ -94,31 +94,22 @@ path {
 }
 
 .metric1 {
-  stroke: red;
-}
-
-#legend1 {
-  color: red;
-  font-weight: bold;
-  margin-top: -20px;
-  margin-bottom: 30px;
-}
-
-.metric2 {
   stroke: darkGreen;
 }
 
-#legend2 {
+#legend-bookings {
   color: darkGreen;
   font-weight: bold;
   margin-top: -20px;
   margin-bottom: 30px;
+  padding-left: 70px;
 }
 
 .x.axis line, .x.axis path {
   stroke: black;
   stroke-width: 1px;
 }
+
 .x.axis text {
   font-size: 12;
 }
@@ -133,10 +124,6 @@ path {
   font-weight: bold
 }
 
-.y.axisRight text {
-  fill: darkGreen;
-}
-
 .y.axisLeft text {
-  fill: red;
+  fill: darkGreen;
 }

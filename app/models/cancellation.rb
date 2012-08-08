@@ -1,7 +1,12 @@
 class Cancellation < ActiveRecord::Base
-  attr_accessible :metric_1, :name
+  attr_accessible :metric_1, :name, :booking_id
 
-  def update_cancellations_table
+  belongs_to :booking
+
+  validates :name, :presence => true
+  validates :metric_1, :presence => true, :numericality => true
+
+  def update_cancellations
   dummy_symbols = ['GRPN']
   dummy_symbols.each do |symbol|
     dummy_data = YahooStock::Quote.new(:stock_symbols => symbol)
