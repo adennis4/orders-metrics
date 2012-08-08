@@ -24,7 +24,7 @@ window.cancellationGraph = (stat_array) ->
     .append("svg:g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 
-  xAxis = d3.svg.axis().scale(x)
+  xAxis = d3.svg.axis().scale(x).ticks(4)
 
   graph.append("svg:g")
     .attr("class", "x axis")

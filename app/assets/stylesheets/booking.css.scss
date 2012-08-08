@@ -115,6 +115,10 @@ path {
   margin-bottom: 30px;
 }
 
+.x.axis line, .x.axis path {
+  stroke: black;
+  stroke-width: 1px;
+}
 .x.axis text {
   font-size: 12;
 }
