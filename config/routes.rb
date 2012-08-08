@@ -1,6 +1,7 @@
 PerformanceMetrics::Application.routes.draw do
 
   resources :bookings
+  resources :cancellations
   
   root :to => 'bookings#new'
   # The priority is based upon order of creation:
