@@ -15,6 +15,10 @@ describe Booking do
     it 'has one cancellation' do
       Booking.new.should respond_to(:cancellation)
     end
+
+    it 'belongs to booking history' do
+      Booking.new.should respond_to(:booking_history)
+    end
   end
 
   describe 'validations' do
@@ -34,7 +38,7 @@ describe Booking do
       Booking.new(valid_params.merge(:booking_history_id => nil)).should_not be_valid
     end
 
-    it 'requires numeric values for booking id' do
+    it 'booking id only has numeric values' do
       Booking.new(valid_params.merge(:booking_history_id => 'adslf')).should_not be_valid
     end
   end
