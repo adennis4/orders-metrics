@@ -15,7 +15,7 @@ describe Cancellation do
     end
   end
 
-  describe 'initial instantiation' do
+  describe 'validations' do
     it 'requires a name' do
       Cancellation.new(valid_params.merge(:name => nil)).should_not be_valid
     end

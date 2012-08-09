@@ -16,7 +16,7 @@ describe Booking do
     end
   end
 
-  describe 'initial instantiation' do
+  describe 'validations' do
     it 'requires a name' do
       Booking.new(valid_params.merge(:name => nil)).should_not be_valid
     end
