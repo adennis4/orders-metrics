@@ -6,7 +6,8 @@ describe Booking do
   let(:valid_params) do
     {
       :name => "Southwest",
-      :metric_1 => 34
+      :metric_1 => 34,
+      :booking_history_id => 12
     }
   end
 
@@ -27,6 +28,14 @@ describe Booking do
 
     it 'metric only has numeric values' do
       Booking.new(valid_params.merge(:metric_1 => "foo")).should_not be_valid
+    end
+
+    it 'requires a booking id' do
+      Booking.new(valid_params.merge(:booking_history_id => nil)).should_not be_valid
+    end
+
+    it 'requires numeric values for booking id' do
+      Booking.new(valid_params.merge(:booking_history_id => 'adslf')).should_not be_valid
     end
   end
 

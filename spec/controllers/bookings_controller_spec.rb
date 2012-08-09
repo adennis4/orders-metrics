@@ -4,8 +4,8 @@ describe BookingsController do
 
   describe 'GET index' do
     before(:each) do
-      Booking.create(:name => 'Example', :metric_1 => 45123)
-      Booking.create(:name => 'Another', :metric_1 => 12345)
+      Booking.create(:name => 'Example', :metric_1 => 45123, :booking_history_id => 4)
+      Booking.create(:name => 'Another', :metric_1 => 12345, :booking_history_id => 7)
       get :index
     end
 
@@ -23,7 +23,7 @@ describe BookingsController do
 
     it 'updates the index page when another booking added' do
       b = Booking.all
-      Booking.create(:name => 'YetAnother', :metric_1 => 67890)
+      Booking.create(:name => 'YetAnother', :metric_1 => 67890, :booking_history_id => 9)
       Booking.all.count.should == b.count + 1
     end
   end
