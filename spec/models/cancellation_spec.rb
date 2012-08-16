@@ -30,16 +30,16 @@ describe Cancellation do
   end
 
   describe 'updates cancellations table' do
-    it 'updates name field' do
-      c = Cancellation.new
-      c.update_cancellations
-      Cancellation.last.name.should == "Groupon, Inc."
+    before :each do
+      Cancellation.new.update_cancellations
     end
 
-    it 'updates metric field' do
-      c = Cancellation.new
-      c.update_cancellations
-      Cancellation.last.metric_1.should be_an_instance_of(Float)
+    it 'updates bookings table name field' do
+      Cancellation.last.should respond_to(:name)
+    end
+
+    it 'updates bookings table metric field' do
+      Cancellation.last.should respond_to(:metric_1)
     end
   end
 end

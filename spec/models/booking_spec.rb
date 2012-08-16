@@ -7,7 +7,7 @@ describe Booking do
     {
       :name => "Southwest",
       :metric_1 => 34,
-      :booking_history_id => 12
+      :booking_snapshot_id => 12
     }
   end
 
@@ -35,25 +35,25 @@ describe Booking do
     end
 
     it 'requires a booking id' do
-      Booking.new(valid_params.merge(:booking_history_id => nil)).should_not be_valid
+      Booking.new(valid_params.merge(:booking_snapshot_id => nil)).should_not be_valid
     end
 
     it 'booking id only has numeric values' do
-      Booking.new(valid_params.merge(:booking_history_id => 'adslf')).should_not be_valid
+      Booking.new(valid_params.merge(:booking_snapshot_id => 'adslf')).should_not be_valid
     end
   end
 
   describe 'update_bookings_table' do
+    before :each do
+      Booking.new.update_bookings
+    end
+
     it 'updates bookings table name field' do
-      b = Booking.new
-      b.update_bookings
-      Booking.last.name.should == "Google Inc."
+      Booking.last.should respond_to(:name)
     end
 
     it 'updates bookings table metric field' do
-      b = Booking.new
-      b.update_bookings
-      Booking.last.metric_1.should be_an_instance_of(Float)
+      Booking.last.should respond_to(:metric_1)
     end
   end
 end

@@ -1,5 +1,7 @@
 PerformanceMetrics::Application.routes.draw do
 
+
+  resources :booking_snapshots, :only => :index
   resources :bookings
   resources :cancellations
   
