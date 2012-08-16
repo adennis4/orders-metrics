@@ -25,25 +25,13 @@
 
           %dt.sidemenu Destinations
           %dd 
-            %a{:href => "/"} US
+            = link_to "US", booking_snapshots_path
           %dd 
             %a{:href => "/"} Canada
           %dd 
             %a{:href => "/"} Mexico, Caribbean, & Latin America
           %dd 
             %a{:href => "/"} Europe, Asia, Africa, & Oceania
-
-          %dt.sidemenu Deal Parameters
-          %dd 
-            %a{:href => "/"} Select Deal
-          %dd 
-            %a{:href => "/"} By Price
-          %dd 
-            %a{:href => "/"} By Percentage Discount
-          %dd 
-            %a{:href => "/"} By Reservation Date
-          %dd 
-            %a{:href => "/"} By Tags
 
           %dt.sidemenu Metrics
           %dd
@@ -53,10 +41,6 @@
 
       .span6
         #title= "Metrics Tracker"
-        #refresh= link_to "Refresh Graph"
         = yield
 
       = render "shared/tracking_metrics"
-
-  %footer
-    = debug params
