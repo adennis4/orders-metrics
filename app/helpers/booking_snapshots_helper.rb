@@ -1,0 +1,2 @@
+module BookingSnapshotsHelper
+end
