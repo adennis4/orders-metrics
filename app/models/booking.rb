@@ -20,6 +20,5 @@ class Booking < ActiveRecord::Base
     b[:metric_1] = test_data_hash[:last_trade_price_only]
     b[:booking_snapshot_id] = new_history.id
     b.save!
-    end
   end
 end
