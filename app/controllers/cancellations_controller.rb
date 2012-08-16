@@ -5,9 +5,9 @@ class CancellationsController < ApplicationController
   end
 
   def index
-    @stat_array = Cancellation.find_all_by_name("Groupon, Inc.").map { |order| order.metric_1 }
+    @cancellations = Cancellation.find_all_by_name("Groupon, Inc.").map { |order| order.metric_1 }
   
-    @max = @stat_array.max
-    @min = @stat_array.min
+    @max = @cancellations.max
+    @min = @cancellations.min
   end
 end
