@@ -6,9 +6,8 @@ gem 'd3-rails', '~> 0.0.4'
 gem 'haml-rails', '~> 0.3.4'
 gem 'jquery-rails', '~> 2.0.0'
 gem 'jasminerice', :group => [:development, :test]
-gem 'nas-yahoo_stock', "~> 1.0.8"
 gem 'whenever', '~> 0.7.3'
-gem 'pusher', '~> 0.9.4'
+gem 'geokit', '~> 1.6.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
