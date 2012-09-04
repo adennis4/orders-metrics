@@ -1,29 +1,7 @@
-<!DOCTYPE html>
-<meta charset="utf-5">
-
-<link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
-
-<style>
-
-#chart svg {
-  height: 500px;
-  width: 800px;
-  min-width: 200px;
-  min-height: 200px;
-}
-
-</style>
-<body>
-
-  <div id="chart">
-    <svg style="height: 500px;"></svg>
-  </div>
-
 <script src="../lib/d3.v2.js"></script>
 <script src="../nv.d3.js"></script>
 <script src="stream_layers.js"></script>
 <script>
-var dataset = [4, 4.3, 5.2, 4.6, 4.2, 5.7, 6.1, 7, 5.5, 4.3, 6.1, 7.7, 5, 4, 4.3, 5.2, 4.6, 4.2, 5.7, 6.1, 7, 5.5, 4.3, 6.1, 7.7, 5, 4, 4.3, 5.2, 4.6, 4.2, 5.7, 6.1, 7, 5.5, 4.3, 6.1, 7.7, 5, 5.2, 4.6, 4.2, 5.7, 6.1, 7, 5.5, 4.6, 4.2, 5.7, 5, 4, 4.3, 5.2, 4.6, 4.2, 5.1]
 
 nv.addGraph(function() {
   var chart = nv.models.lineWithFocusChart();
@@ -41,13 +19,14 @@ nv.addGraph(function() {
   return chart;
 });
 
+// Fake Data Generator Below
+// Generates Random Data
+
 function testData() {
-  return stream_layers(2, 200, .1).map(function(d, i) {
+  return stream_layers(4, 200, .1).map(function(d, i) {
     return { 
-      key: 'Test Stats',
-      values: dataset.map(function(d, i) {
-        return {x: i, y: d}
-      })
+      key: 'Test Stat ' + (i + 1),
+      values: d
     };
   });
 }
@@ -76,3 +55,8 @@ function stream_index(d, i) {
 }
 
 </script>
+<body>
+  <div id="chart">
+    <svg style="height: 500px;"></svg>
+  </div>
+</body>
