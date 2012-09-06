@@ -11,19 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904211305) do
-
-  create_table "booking_snapshots", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+ActiveRecord::Schema.define(:version => 20120906202609) do
 
   create_table "bookings", :force => true do |t|
     t.string   "name"
-    t.float    "metric_1"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.integer  "booking_snapshot_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "status"
     t.datetime "reservation_booked"
     t.datetime "check_in"
@@ -33,14 +26,6 @@ ActiveRecord::Schema.define(:version => 20120904211305) do
     t.integer  "number_of_rooms"
     t.string   "ip_address"
     t.string   "destination"
-  end
-
-  create_table "cancellations", :force => true do |t|
-    t.string   "name"
-    t.float    "metric_1"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "booking_id"
   end
 
   create_table "locations", :force => true do |t|
