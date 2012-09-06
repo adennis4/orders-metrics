@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'yahoo_stock'
 
 describe Cancellation do
   let(:valid_params) do
@@ -29,17 +28,17 @@ describe Cancellation do
     end
   end
 
-  describe 'updates cancellations table' do
-    before :each do
-      Cancellation.new.update_cancellations
-    end
+  # describe 'updates cancellations table' do
+  #   before :each do
+  #     Cancellation.new.update_cancellations
+  #   end
 
-    it 'updates bookings table name field' do
-      Cancellation.last.should respond_to(:name)
-    end
+  #   it 'updates bookings table name field' do
+  #     Cancellation.last.should respond_to(:name)
+  #   end
 
-    it 'updates bookings table metric field' do
-      Cancellation.last.should respond_to(:metric_1)
-    end
-  end
+  #   it 'updates bookings table metric field' do
+  #     Cancellation.last.should respond_to(:metric_1)
+  #   end
+  # end
 end
