@@ -2,6 +2,7 @@ class Location < ActiveRecord::Base
   attr_accessible :city, :country, :latitude, :longitude, :state
 
   has_many :bookings
+  has_many :weathers
 
   def set_location(ip_address)
     params = ["city", "state", "country", "latitude", "longitude"]

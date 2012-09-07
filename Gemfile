@@ -8,6 +8,7 @@ gem 'jquery-rails', '~> 2.0.0'
 gem 'jasminerice', :group => [:development, :test]
 gem 'whenever', '~> 0.7.3'
 gem 'geokit', '~> 1.6.5'
+gem 'weather-underground', '~> 1.1.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

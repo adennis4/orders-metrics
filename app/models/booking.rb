@@ -1,9 +1,7 @@
 class Booking < ActiveRecord::Base
   attr_accessible :name, :location_id
 
-  has_one :cancellation
   belongs_to :location
-  belongs_to :booking_history
 
   validates :name, :presence => true
   #validates :metric_1, :presence => true, :numericality => true
