@@ -5,7 +5,7 @@ PerformanceMetrics::Application.routes.draw do
   resources :bookings
   resources :cancellations
   
-  root :to => 'bookings#new'
+  root :to => 'static_pages#welcome'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

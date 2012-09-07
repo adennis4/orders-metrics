@@ -7,7 +7,6 @@
     = csrf_meta_tags
 
   %body
-    %h1 Getaways Metrics
     .navbar.navbar-fixed-top
       #logo
         %a{:href => "/"}
@@ -15,32 +14,5 @@
       .navbar-inner
         .container
           .nav-collapse.collapse
-
-    .row-fluid
-      .span2
-        %dl
-          %dt Getaways
-          %dd
-            %a{:href => "/"} All of Getaways
-
-          %dt.sidemenu Destinations
-          %dd 
-            = link_to "US", booking_snapshots_path
-          %dd 
-            = link_to "Canada", booking_snapshots_path
-          %dd 
-            = link_to "Mexico, Caribbean, & Latin America", booking_snapshots_path
-          %dd 
-            = link_to "Europe, Asia, Africa, & Oceania", booking_snapshots_path
-
-          %dt.sidemenu Metrics
-          %dd
-            = link_to "Bookings", bookings_path
-          %dd
-            = link_to "Cancellations", cancellations_path
-
-      .span6
-        #title= "Metrics Tracker"
-        = yield
-
-      = render "shared/tracking_metrics"
+          
+    = yield
