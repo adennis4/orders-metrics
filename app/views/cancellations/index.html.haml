@@ -1,4 +1,8 @@
-.hero-unit
-  #main-graph
-    :javascript
-      this.cancellationGraph(#{@cancellations})
+= render "shared/main_layout"
+/ .hero-unit
+/   #main-graph
+/     :javascript
+/       this.cancellationGraph(#{@cancellations})
+
+= @cancelled_dates
+= @number_of_cancellations

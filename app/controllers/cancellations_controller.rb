@@ -1,13 +1,19 @@
 class CancellationsController < ApplicationController
 
-  def new
-    @cancellation = Cancellation.new
+  def index
+    cancelled_bookings = Booking.find_all_by_status("cancelled")
+    cancelled_hash = cancelled_bookings.group_by { |res| res.updated_at.to_date }
+    @cancelled_dates = list_of_dates(cancelled_hash)
+    @number_of_cancellations = cancellations_grouped_by_date(cancelled_hash)
   end
 
-  def index
-    @cancellations = Cancellation.find_all_by_name("Groupon, Inc.").map { |order| order.metric_1 }
-  
-    @max = @cancellations.max
-    @min = @cancellations.min
+  private
+
+  def list_of_dates(cancellations)
+    cancellations.keys
+  end
+
+  def cancellations_grouped_by_date(cancellations)
+    cancellations.values.first.count
   end
 end

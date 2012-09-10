@@ -2,18 +2,14 @@
 
 .row-fluid
   .span2
-    %dl
-      %a{:href => "/"}
-        %dt.sidemenu Bookings
-      %a{:href => "/"}
-        %dt.sidemenu Cancellations
-      %a{:href => "/"}
-        %dt.sidemenu Destination
-      %a{:href => "/"}
-        %dt.sidemenu User Location
+    #accordion2.accordion
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOne"}
+            Collapsible Group Item #1
+        #collapseOne.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
 
   .span6
-    #title= "Metrics Tracker"
     = render "shared/bookings_graph"
-
-  = render "shared/tracking_metrics"
