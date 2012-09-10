@@ -7,5 +7,7 @@
     #select Select one of the options below to get started.
 
 .span12
-  %img#selection-left{:src => "./assets/booking_img.png"}
-  %img#selection-right{:src => "./assets/cancelled_img.png"}
+  %a{:href => "/bookings"}
+    %img#selection-left{:src => "./assets/booking_img.png"}
+  %a{:href => "/cancellations"}
+    %img#selection-right{:src => "./assets/cancelled_img.png"}
