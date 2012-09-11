@@ -1,9 +1,8 @@
 PerformanceMetrics::Application.routes.draw do
 
-
-  resources :booking_snapshots, :only => :index
   resources :bookings
   resources :cancellations
+  resources :locations
   
   root :to => 'static_pages#welcome'
   # The priority is based upon order of creation:
