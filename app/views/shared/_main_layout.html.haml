@@ -6,10 +6,58 @@
       .accordion-group
         .accordion-heading
           %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOne"}
-            Collapsible Group Item #1
+            Bookings
         #collapseOne.accordion-body.collapse{:style => "height: 0px; "}
           .accordion-inner
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-
+            %p
+              %a{:href => '/bookings'} Cancellations
+            %p
+              %a{:href => '/bookings'} Weather
+            %p
+              %a{:href => '/bookings'} Destination
+            %p
+              %a{:href => '/bookings'} Location
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseTwo"}
+            Cancellations
+        #collapseTwo.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            %p
+              %a{:href => '/cancellations'} Bookings
+            %p
+              %a{:href => '/cancellations'} Weather
+            %p
+              %a{:href => '/cancellations'} Destination
+            %p
+              %a{:href => '/cancellations'} Location
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseThree"}
+            Destination
+        #collapseThree.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            %p
+              %a{:href => '/destination'} Bookings
+            %p
+              %a{:href => '/destination'} Cancellations
+            %p
+              %a{:href => '/destination'} Weather
+            %p
+              %a{:href => '/destination'} Location
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseFour"}
+            Location
+        #collapseFour.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            %p
+              %a{:href => '/location'} Bookings
+            %p
+              %a{:href => '/location'} Cancellations
+            %p
+              %a{:href => '/location'} Weather
+            %p
+              %a{:href => '/location'} Destination
   .span6
     = render "shared/bookings_graph"

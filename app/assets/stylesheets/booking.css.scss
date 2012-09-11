@@ -93,10 +93,6 @@ path {
   stroke-width: 3px;
 }
 
-.metric1 {
-  stroke: darkGreen;
-}
-
 #legend-bookings {
   color: darkGreen;
   font-weight: bold;
@@ -130,4 +126,14 @@ path {
 
 .accordion-group {
   border: none;
+}
+
+.accordion-toggle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.accordion-inner {
+  font-size: 14px;
+  padding-left: 25px;
 }
