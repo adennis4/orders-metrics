@@ -25,7 +25,7 @@
         #collapseTwo.accordion-body.collapse{:style => "height: 0px; "}
           .accordion-inner
             %p
-              = link_to 'Bookings', cancellations_path(:title => 'cancellations')
+              = link_to 'Bookings', cancellations_path(:title => 'bookings')
             %p
               = link_to 'Weather', cancellations_path(:title => 'weather')
             %p
@@ -62,5 +62,5 @@
               = link_to 'Weather', locations_path(:title => 'weather')
             %p
               = link_to 'Destination', locations_path(:title => 'destination')
-  .span6
+  .span9
     = render "shared/bookings_graph"

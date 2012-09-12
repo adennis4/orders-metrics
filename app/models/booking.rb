@@ -1,5 +1,5 @@
 class Booking < ActiveRecord::Base
-  attr_accessible :name, :location_id
+  attr_accessible :name, :status, :location_id
 
   belongs_to :location
 
