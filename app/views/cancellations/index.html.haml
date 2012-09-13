@@ -1,4 +1,7 @@
-.hero-unit
-  #main-graph
-    :javascript
-      this.cancellationGraph(#{@cancellations})
+= render "shared/main_layout"
+:javascript
+  this.bookingGraph(#{@title_hash[:number_of_bookings]}, #{@cancellations_hash[:number_of_cancellations]})
+%p
+  Bookings #{@title_hash}
+%p
+  Cancellations #{@cancellations_hash}

@@ -2,29 +2,66 @@
 
 .row-fluid
   .span2
-    %dl
-      %dt Getaways
-      %dd
-        %a{:href => "/"} All of Getaways
+    #accordion2.accordion
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseOne"}
+            Bookings
+        #collapseOne.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            %p
+              = link_to 'Cancellations', bookings_path(:title => 'cancellations')
+            %p
+              = link_to 'Weather', bookings_path(:title => 'weather')
+            %p
+              = link_to 'Destination', bookings_path(:title => 'destination')
+            %p
+              = link_to 'Location', bookings_path(:title => 'location')
 
-      %dt.sidemenu Destinations
-      %dd 
-        = link_to "US", booking_snapshots_path
-      %dd 
-        = link_to "Canada", booking_snapshots_path
-      %dd 
-        = link_to "Mexico, Caribbean, & Latin America", booking_snapshots_path
-      %dd 
-        = link_to "Europe, Asia, Africa, & Oceania", booking_snapshots_path
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseTwo"}
+            Cancellations
+        #collapseTwo.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            %p
+              = link_to 'Bookings', cancellations_path(:title => 'bookings')
+            %p
+              = link_to 'Weather', cancellations_path(:title => 'weather')
+            %p
+              = link_to 'Destination', cancellations_path(:title => 'destination')
+            %p
+              = link_to 'Location', cancellations_path(:title => 'location')
 
-      %dt.sidemenu Metrics
-      %dd
-        = link_to "Bookings", bookings_path
-      %dd
-        = link_to "Cancellations", cancellations_path
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseThree"}
+            Destination
+        #collapseThree.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            %p
+              = link_to 'Bookings', bookings_path(:title => 'bookings')
+            %p
+              = link_to 'Cancellations', bookings_path(:title => 'cancellations')
+            %p
+              = link_to 'Weather', bookings_path(:title => 'weather')
+            %p
+              = link_to 'Location', bookings_path(:title => 'location')
 
-  .span6
-    #title= "Metrics Tracker"
-    = render "shared/bookings_graph"
-
-  = render "shared/tracking_metrics"
+      .accordion-group
+        .accordion-heading
+          %a.accordion-toggle{"data-parent" => "#accordion2", "data-toggle" => "collapse", :href => "#collapseFour"}
+            Location
+        #collapseFour.accordion-body.collapse{:style => "height: 0px; "}
+          .accordion-inner
+            %p
+              = link_to 'Bookings', locations_path(:title => 'bookings')
+            %p
+              = link_to 'Cancellations', locations_path(:title => 'cancellations')
+            %p
+              = link_to 'Weather', locations_path(:title => 'weather')
+            %p
+              = link_to 'Destination', locations_path(:title => 'destination')
+  .span9
+    .hero-unit
+      #main-graph

@@ -1,13 +1,25 @@
 class CancellationsController < ApplicationController
 
-  def new
-    @cancellation = Cancellation.new
-  end
+  include BookingsModule
+  include CancellationsModule
 
   def index
-    @cancellations = Cancellation.find_all_by_name("Groupon, Inc.").map { |order| order.metric_1 }
-  
-    @max = @cancellations.max
-    @min = @cancellations.min
+    @cancellations_hash = get_cancellations
+    @title_hash = select_graph(params[:title])
+  end
+
+  private
+
+  def select_graph(title)
+    case title
+    when "bookings"
+      get_bookings
+    when "weather"
+      puts "weather is sunny"
+    when "destination"
+      puts "destination Bora Bora"
+    when "location"
+      puts "location nowhere"
+    end
   end
 end
