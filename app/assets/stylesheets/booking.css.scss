@@ -66,8 +66,8 @@ table {
 }
 
 #main-graph {
-  width: 743px;
-  margin-left: -60px;
+  width: 1000px;
+  height: 557px;
 }
 
 .bar {
@@ -88,13 +88,22 @@ table {
 
 // Styling for Double Line Graph
 
+.metric1 {
+  stroke: red;
+}
+
+.metric2 {
+  stroke: green;
+}
+
 path {
   fill: none;
   stroke-width: 3px;
 }
 
 #legend-bookings {
-  color: darkGreen;
+  color: darkBlue;
+  font-size: 24px;
   font-weight: bold;
   margin-top: -20px;
   margin-bottom: 30px;

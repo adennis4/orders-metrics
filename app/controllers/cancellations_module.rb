@@ -14,6 +14,6 @@ module CancellationsModule
   end
 
   def cancellations_grouped_by_date(cancellations)
-    cancellations.values.first.count
+    cancellations.values.map{ |cancelled| cancelled.count }
   end
 end

@@ -1,7 +1,7 @@
 = render "shared/main_layout"
+:javascript
+  this.bookingGraph(#{@bookings_hash[:number_of_bookings]}, #{@title_hash[:number_of_cancellations]})
 %p
-  = @booking_dates
+  Bookings #{@bookings_hash}
 %p
-  = @number_of_bookings
-%p
-  = @cancellations_hash
+  Cancellations #{@title_hash}

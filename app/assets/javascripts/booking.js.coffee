@@ -1,9 +1,10 @@
-this.bookingGraph = (stat_array) ->
+this.bookingGraph = (stat_array1, stat_array2) ->
 
-  dataset = stat_array
+  dataset = stat_array1
+  dataset2 = stat_array2
 
-  margin = {top: 40, bottom: 40, left: 80, right: 80}
-  width = 743 - margin.right - margin.left
+  margin = {top: 40, bottom: 40, left: 80, right: 20}
+  width = 1000 - margin.right - margin.left
   height = 500 - margin.top - margin.bottom
 
   x = d3.scale.linear().domain([0, dataset.length]).range([0, width])
@@ -39,11 +40,12 @@ this.bookingGraph = (stat_array) ->
 
   drawLineGraph = ->
     graph.append("svg:path").attr("d", line1(dataset)).attr("class", "metric1")
+    graph.append("svg:path").attr("d", line1(dataset2)).attr("class", "metric2")
 
   displayLegend = ->
     d3.select("#main-graph")
       .append("p")
-      .text("Bookings")
+      .text("Bookings vs. Cancellations")
       .attr("id", "legend-bookings")
 
   displayLegend()
