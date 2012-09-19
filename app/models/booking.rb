@@ -4,8 +4,6 @@ class Booking < ActiveRecord::Base
   belongs_to :location
 
   validates :name, :presence => true
-  #validates :metric_1, :presence => true, :numericality => true
-  #validates :booking_snapshot_id, :presence => true, :numericality => true
 
   def update_bookings
     # symbol = 'GOOG'

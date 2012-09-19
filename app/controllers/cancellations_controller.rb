@@ -1,7 +1,6 @@
 class CancellationsController < ApplicationController
 
-  include BookingsModule
-  include CancellationsModule
+  include BookingsModule, CancellationsModule, LocationsModule
 
   def index
     @cancellations_hash = get_cancellations
@@ -19,7 +18,7 @@ class CancellationsController < ApplicationController
     when "destination"
       puts "destination Bora Bora"
     when "location"
-      puts "location nowhere"
+      get_locations
     end
   end
 end

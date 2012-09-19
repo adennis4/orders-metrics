@@ -4,7 +4,6 @@ class Cancellation < ActiveRecord::Base
   belongs_to :booking
 
   validates :name, :presence => true
-  validates :metric_1, :presence => true, :numericality => true
 
   def update_cancellations
   # dummy_symbols = ['GRPN']
