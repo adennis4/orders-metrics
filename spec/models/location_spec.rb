@@ -1,15 +1,26 @@
 require 'spec_helper'
 
 describe Location do
-  # describe "set_location" do
-  #   it "adds city, state, country, lat, and lng to database" do
-  #     new_location = Location.new
-  #     new_location.set_location("62.87.0.0")
-  #     new_location.city.should == "Barcelona"
-  #     new_location.state.should == nil
-  #     new_location.country.should == "ES"
-  #     new_location.latitude.should == 41.3833
-  #     new_location.longitude.should == 2.15
-  #   end
-  # end
+
+  describe 'validations' do
+    describe 'fips_county_code' do
+      it 'requires a fips_county_code' do
+        Location.new(:fips_county_code => nil).should_not be_valid
+      end
+
+      it 'requires a length of 4 or 5 characters' do
+        Location.new(:fips_county_code => 12345).should be_valid
+        Location.new(:fips_county_code => 1234).should be_valid
+      end
+
+      it 'requires an integer as a value' do
+        Location.new(:fips_county_code => "hello").should_not be_valid
+      end
+
+      it 'must be unique' do
+        Location.create(:fips_county_code => 12345)
+        Location.new(:fips_county_code => 12345).should_not be_valid
+      end
+    end
+  end
 end

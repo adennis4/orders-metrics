@@ -2,7 +2,11 @@ class Location < ActiveRecord::Base
   attr_accessible :city, :country, :latitude, :longitude, :state
 
   has_many :bookings
-  has_many :weathers
+
+  validates :fips_county_code, :presence => true,
+                               :length => { :in => 4..5 },
+                               :numericality => { :only_integer => true },
+                               :uniqueness => true
 
   def set_location(ip_address)
     params = ["city", "state", "country", "latitude", "longitude"]
