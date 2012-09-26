@@ -23,4 +23,10 @@ describe Location do
       end
     end
   end
+
+  describe 'associations' do
+    it 'has many bookings' do
+      Location.new.should respond_to(:bookings)
+    end
+  end
 end
