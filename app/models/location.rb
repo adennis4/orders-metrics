@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :city, :country, :latitude, :longitude, :state
+  attr_accessible :city, :country, :latitude, :longitude, :state, :fips_county_code
 
   has_many :bookings
 
@@ -8,19 +8,23 @@ class Location < ActiveRecord::Base
                                :numericality => { :only_integer => true },
                                :uniqueness => true
 
-  def set_location(ip_address)
-    params = ["city", "state", "country", "latitude", "longitude"]
-    new_loc = Location.new
-    loc_info = get_location_from_ip_address(ip_address)
-    new_loc["city"] = loc_info.city
-    new_loc["state"] = loc_info.state
-    new_loc["country"] = loc_info.country_code
-    new_loc["latitude"] = loc_info.lat
-    new_loc["longitude"] = loc_info.lng
-    new_loc.save
+  def self.get_location_from_ip_address(ip_address)
+    Geokit::Geocoders::MultiGeocoder.geocode(ip_address)
   end
 
-  def get_location_from_ip_address(ip_address)
-    Geokit::Geocoders::MultiGeocoder.geocode(ip_address)
+  def self.request_county_code(latitude, longitude)
+    uri = URI("http://data.fcc.gov/api/block/find?latitude=#{latitude}&longitude=#{longitude}")
+    xml_response = Net::HTTP.get(uri)
+    xml_response.scan(/"(\d{5})\"/).flatten.first.to_i
+  end
+
+  def self.set_county_code(booking_id)
+    booking = Booking.find(booking_id)
+    geolocation = get_location_from_ip_address(booking.ip_address)
+    latitude = geolocation.lat
+    longitude = geolocation.lng
+    county_code = request_county_code(latitude, longitude)
+
+    county_code == 0 ? nil : Location.find_by_fips_county_code(county_code).id
   end
 end

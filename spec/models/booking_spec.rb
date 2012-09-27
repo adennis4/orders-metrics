@@ -35,4 +35,31 @@ describe Booking do
       Booking.new(valid_params.merge(:ip_address => "1234.1234.1234.1234")).should_not be_valid
     end
   end
+
+  describe 'add_booking' do
+    it 'creates a new entry in bookings table' do
+      count = Booking.all.count
+      Booking.add_booking("Getaways", "confirmed", "123.123.123.123")
+      Booking.all.count.should == count + 1
+    end
+
+    it 'creates an entry even if location is not set' do
+      count = Booking.all.count
+      Booking.add_booking("Getaways", "confirmed", "0.0.0.0")
+      Booking.all.count.should == count + 1
+    end
+  end
+
+  describe 'set_location' do
+    it 'sets a location_id for the booking' do
+      Location.create(:fips_county_code => 17031)
+      Booking.add_booking("Getaways", "confirmed", "74.201.7.122")
+      Booking.last.location_id.should == 1
+    end
+
+    it 'does not fail even if ip_address is invalid' do
+      Booking.add_booking("Getaways", "confirmed", "0.0.0.0")
+      Booking.last.location_id.should == nil
+    end
+  end
 end
