@@ -1,21 +1,21 @@
 class Booking < ActiveRecord::Base
-  attr_accessible :name, :status, :location_id
+  attr_accessible :name, :status, :location_id, :ip_address, :fips_county_code
 
   belongs_to :location
 
   validates :name, :presence => true
+  validates :status, :presence => true
+  validates :ip_address, :presence => true,
+                         :length => { :in => 7..15 }
 
-  def update_bookings
-    # symbol = 'GOOG'
-    # new_history = BookingSnapshot.create
-    # test_data = YahooStock::Quote.new(:stock_symbols => symbol)
-    # test_data.use_all_parameters
-    # test_data_hash = test_data.results(:to_hash).output.first
+  def self.add_booking(name, status, ip_address)
+    new_booking = Booking.create(:name => name, :status => status, :ip_address => ip_address)
+    set_location(new_booking)
+  end
 
-    # b = Booking.new
-    # b[:name] = test_data_hash[:name]
-    # b[:metric_1] = test_data_hash[:last_trade_price_only]
-    # b[:booking_snapshot_id] = new_history.id
-    # b.save!
+  def self.set_location(booking)
+    booking.location_id = Location.set_county_code(booking.id)
+    booking.fips_county_code = Location.find(booking.location_id).fips_county_code if booking.location_id
+    booking.save
   end
 end

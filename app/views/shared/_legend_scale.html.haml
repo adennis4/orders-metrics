@@ -1,0 +1,7 @@
+.legend-scale
+  %ul.legend-labels
+    - @legend_labels.each do |label|
+      %li
+        .div{:style => "background:#{label[:color]}"}
+        %span= label[:text]
+    

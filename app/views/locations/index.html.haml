@@ -65,4 +65,8 @@
       #map-layout
         = render "shared/map_svg"
         :javascript
-          this.locationMap(#{@locations.to_json}, "#{@title}")
+          var Booking = Booking || {};
+          Booking.locations = #{@locations.to_json};
+          this.locationMap(Booking.locations)
+
+        = render "shared/radio_buttons"

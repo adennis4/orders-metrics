@@ -1,14 +1,64 @@
-  #container {
-    margin-left: auto;
-    margin-right: auto;
-    height: 600px;
-    width: 1000px;
+#container {
+  margin-left: auto;
+  margin-right: auto;
+  height: 600px;
+  width: 1000px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#legend-locations {
+  text-align: right;  
+}
+
+.legend-title {
+  text-align: left;
+  font-weight: bold;
+  font-size: 90%;
+  float: right;
+  margin-top: -275px;
+  margin-right: 18px;
   }
 
-  h1 {
-    text-align: center;
+.legend-scale ul {
+  margin: 0;
+  padding: 0;
+  float: right;
+  list-style: none;
+  margin-top: -250px;
   }
 
-  #map-layout svg path {
-    fill: darkGray;
+.legend-scale ul li {
+  display: block;
+  float: left;
+  width: 50px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 80%;
+  list-style: none;
   }
+
+ul.legend-labels li div {
+  display: block;
+  float: left;
+  height: 15px;
+  width: 50px;
+  }
+
+.legend-source {
+  font-size: 70%;
+  color: #999;
+  clear: both;
+  }
+
+.location-legend a {
+  color: #777;
+  }
+
+.radio .inline {
+  margin-top: -200px;
+}
+
+
