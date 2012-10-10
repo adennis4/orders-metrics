@@ -12,8 +12,8 @@ this.locationMap = (countByCounty, earliestDate) ->
     $("#map-layout path").attr('class', '')
     maxCount = getMaxCount(filteredCounties)
     for county in filteredCounties
-      $("#" + county.county_code)
-      .attr('class', 'Blues q' + setShade(county.count, maxCount) + '-9')
+      setAttributes(county, maxCount)
+      setHoverTooltip(county.county_code)
 
   setShade = (count, maxCount) ->
     colorSplit = Math.floor(maxCount / 5)
@@ -30,6 +30,14 @@ this.locationMap = (countByCounty, earliestDate) ->
       6
     else if colorSplit * 4 < count
       7
+
+  setAttributes = (county, maxCount) ->
+    $("#" + county.county_code)
+      .attr('class', 'Blues q' + setShade(county.count, maxCount) + '-9')
+      .attr('title', 'Bookings:  ' + county.count)
+
+  setHoverTooltip = (county_code) ->
+    $('#' + county_code).tooltip()
 
   getMaxCount = (countByCounty) ->
     countArray = []
