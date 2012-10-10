@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926174306) do
+ActiveRecord::Schema.define(:version => 20121007162136) do
 
   create_table "bookings", :force => true do |t|
     t.string   "name"
@@ -26,18 +26,22 @@ ActiveRecord::Schema.define(:version => 20120926174306) do
     t.string   "ip_address",         :limit => 20
     t.string   "destination"
     t.integer  "location_id"
+    t.integer  "fips_county_code"
   end
 
+  add_index "bookings", ["fips_county_code"], :name => "index_bookings_on_fips_county_code"
+
   create_table "locations", :force => true do |t|
-    t.string   "city"
+    t.string   "county"
     t.string   "state"
-    t.string   "country"
     t.float    "latitude"
     t.float    "longitude"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "fips_county_code"
   end
+
+  add_index "locations", ["fips_county_code"], :name => "index_locations_on_fips_county_code"
 
   create_table "weathers", :force => true do |t|
     t.integer  "location_id"

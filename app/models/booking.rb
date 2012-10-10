@@ -1,5 +1,5 @@
 class Booking < ActiveRecord::Base
-  attr_accessible :name, :status, :location_id, :ip_address
+  attr_accessible :name, :status, :location_id, :ip_address, :fips_county_code
 
   belongs_to :location
 
@@ -15,6 +15,7 @@ class Booking < ActiveRecord::Base
 
   def self.set_location(booking)
     booking.location_id = Location.set_county_code(booking.id)
+    booking.fips_county_code = Location.find(booking.location_id).fips_county_code if booking.location_id
     booking.save
   end
 end

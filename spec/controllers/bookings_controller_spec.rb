@@ -4,7 +4,7 @@ describe BookingsController do
 
   describe 'GET index' do
     before(:each) do
-      Booking.create(:name => 'Getaways', :status => 'confirmed')
+      Booking.create(:name => 'Getaways', :status => 'confirmed', :ip_address => '3.0.0.0')
     end
 
     it 'returns a successful response' do
@@ -22,9 +22,9 @@ describe BookingsController do
       Booking.all.count.should == 1
     end
 
-    it 'increases the count of confirmed bookings when one is added' do
+    it 'knows the count of confirmed bookings when one is added' do
       original_count = Booking.all.count
-      Booking.create(:name => "Another", :status => 'confirmed')
+      Booking.create(:name => "Another", :status => 'confirmed', :ip_address => '3.0.0.0')
       get :index
       Booking.all.count.should == original_count + 1
     end

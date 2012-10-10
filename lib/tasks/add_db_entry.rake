@@ -29,7 +29,7 @@ namespace :booking do
   end
 
   def randomize_ip_address
-    total_lines = 47242
+    total_lines = 400
     File.readlines('lib/ip_addresses.txt')[rand(total_lines)].strip
   end
 end

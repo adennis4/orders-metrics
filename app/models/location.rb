@@ -1,5 +1,5 @@
 class Location < ActiveRecord::Base
-  attr_accessible :city, :country, :latitude, :longitude, :state, :fips_county_code
+  attr_accessible :county, :latitude, :longitude, :state, :fips_county_code
 
   has_many :bookings
 
@@ -24,6 +24,14 @@ class Location < ActiveRecord::Base
     latitude = geolocation.lat
     longitude = geolocation.lng
     county_code = request_county_code(latitude, longitude)
+
+    location = Location.find_by_fips_county_code(county_code)
+    if location
+      location.state = geolocation.state
+      location.latitude = latitude
+      location.longitude = longitude
+      location.save
+    end
 
     county_code == 0 ? nil : Location.find_by_fips_county_code(county_code).id
   end
