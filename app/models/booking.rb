@@ -21,12 +21,6 @@ class Booking < ActiveRecord::Base
     booking.save
   end
 
-  def self.write_to_csv
-    bookings_hash = BookingsModule::get_bookings
-    write_to_bookings_csv(bookings_hash)
-    write_to_cancellations_csv(bookings_hash)
-  end
-
   def self.write_to_bookings_csv
     bookings_hash = BookingsModule::get_bookings
     CSV.open('public/bookings.csv', 'a+') do |csv|
