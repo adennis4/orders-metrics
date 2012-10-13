@@ -1,4 +1,4 @@
-this.locationMap = (countByCounty, earliestDate) ->
+this.locationMap = (title, countByCounty, earliestDate) ->
 
   dateFilters =
     lastYear: +(new Date) - 365 * 24 * 60 * 60 * 1000
@@ -6,6 +6,14 @@ this.locationMap = (countByCounty, earliestDate) ->
     lastMonth: +(new Date) - 30 * 24 * 60 * 60 * 1000
     lastWeek: +(new Date) - 7 * 24 * 60 * 60 * 1000
     now: +(new Date)
+
+  mapColor =
+    bookings: 'Greens q'
+    cancellations: 'Reds q'
+
+  tooltipText =
+    bookings: 'Booked:  '
+    cancellations: 'Cancelled:  '
 
   this.county = (filteredCounties) ->
     # Something strange about jQuery's interaction with SVG
@@ -33,8 +41,8 @@ this.locationMap = (countByCounty, earliestDate) ->
 
   setAttributes = (county, maxCount) ->
     $("#" + county.county_code)
-      .attr('class', 'Blues q' + setShade(county.count, maxCount) + '-9')
-      .attr('title', 'Bookings:  ' + county.count)
+      .attr('class', mapColor[title] + setShade(county.count, maxCount) + '-9')
+      .attr('title', tooltipText[title] + county.count)
 
   setHoverTooltip = (county_code) ->
     $('#' + county_code).tooltip()

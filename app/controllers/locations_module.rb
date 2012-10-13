@@ -12,13 +12,14 @@ module LocationsModule
   end
 
   def get_cancellation_locations
-    cancellation_selection = Booking.select("fips_county_code county_code, count(*) count")
+    cancellation_selection = Booking.select("fips_county_code county_code, count(*) count, updated_at")
                                     .where("status = 'cancelled'")
                                     .group("fips_county_code")
 
     cancellation_selection.map do |cancellation|
       {"county_code" => cancellation.county_code,
-       "count" => cancellation.count}
+       "count" => cancellation.count,
+       "date_created" => cancellation.updated_at.strftime("%s").to_i * 1000}
     end
   end
 end

@@ -64,9 +64,15 @@
     .hero-unit
       #map-layout
         = render "shared/map_svg"
-        :javascript
-          var Booking = Booking || {};
-          Booking.locations = #{@locations.to_json};
-          this.locationMap(Booking.locations)
+        - if params[:title] == "bookings"
+          :javascript
+            var Booking = Booking || {};
+            Booking.locations = #{@locations.to_json};
+            this.locationMap("bookings", Booking.locations)
+        - if params[:title] == "cancellations"
+          :javascript
+            var Cancellation = Cancellation || {};
+            Cancellation.locations = #{@locations.to_json};
+            this.locationMap("cancellations", Cancellation.locations)
 
         = render "shared/radio_buttons"

@@ -1,7 +1,12 @@
 .legend-scale
   %ul.legend-labels
-    - @legend_labels.each do |label|
-      %li
-        .div{:style => "background:#{label[:color]}"}
-        %span= label[:text]
-    
+    - if params[:title] == "bookings"
+      - @legend_labels_bookings.each do |label|
+        %li
+          .div{:style => "background:#{label[:color]}"}
+          %span= label[:text]
+    - elsif params[:title] == "cancellations"
+      - @legend_labels_cancellations.each do |label|
+        %li
+          .div{:style => "background:#{label[:color]}"}
+          %span= label[:text]
