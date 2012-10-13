@@ -1,4 +1,6 @@
 class Booking < ActiveRecord::Base
+  require 'csv'
+
   attr_accessible :name, :status, :location_id, :ip_address, :fips_county_code
 
   belongs_to :location
@@ -17,5 +19,25 @@ class Booking < ActiveRecord::Base
     booking.location_id = Location.set_county_code(booking.id)
     booking.fips_county_code = Location.find(booking.location_id).fips_county_code if booking.location_id
     booking.save
+  end
+
+  def self.write_to_csv
+    bookings_hash = BookingsModule::get_bookings
+    write_to_bookings_csv(bookings_hash)
+    write_to_cancellations_csv(bookings_hash)
+  end
+
+  def self.write_to_bookings_csv
+    bookings_hash = BookingsModule::get_bookings
+    CSV.open('public/bookings.csv', 'a+') do |csv|
+      csv << [bookings_hash[:last_booking_date].strftime("%m %b %Y"), bookings_hash[:last_date_count]]
+    end
+  end
+
+  def self.write_to_cancellations_csv
+    cancellations_hash = CancellationsModule::get_cancellations
+    CSV.open('public/cancellations.csv', 'a+') do |csv|
+      csv << [bookings_hash[:last_booking_date].strftime("%m %b %Y"), bookings_hash[:last_date_count]]
+    end
   end
 end
