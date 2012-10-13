@@ -153,8 +153,16 @@ svg {
   font: 10px sans-serif;
 }
 
-svg g path {
-  fill: steelblue;
+.bookings {
+  stroke: darkgreen;
+  fill: green;
+  fill-opacity: .50;
+}
+
+.cancellations {
+  stroke: darkred;
+  fill: red;
+  fill-opacity: .50;
 }
 
 .axis path, .axis line {
@@ -164,7 +172,8 @@ svg g path {
 }
 
 .brush .extent {
-  stroke: #fff;
-  fill-opacity: .125;
+  stroke: ivory;
+  fill: ivory;
+  fill-opacity: .25;
   shape-rendering: crispEdges;
 }

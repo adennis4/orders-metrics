@@ -68,6 +68,7 @@ d3.csv "../cancellations.csv", (data) ->
 
   focus.append("path")
     .data([data])
+    .attr("class", "cancellations")
     .attr("clip-path", "url(#clip)")
     .attr "d", area
 
@@ -82,6 +83,7 @@ d3.csv "../cancellations.csv", (data) ->
   
   context.append("path")
     .data([data])
+    .attr("class", "cancellations")
     .attr "d", area2
   
   context.append("g")
