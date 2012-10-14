@@ -1,13 +1,13 @@
 margin =
-  top: 10
+  top: 30
   right: 10
-  bottom: 100
+  bottom: 80
   left: 80
 
 margin2 =
-  top: 430
+  top: 450
   right: 10
-  bottom: 20
+  bottom: 0
   left: 80
 
 width = 960 - margin.left - margin.right

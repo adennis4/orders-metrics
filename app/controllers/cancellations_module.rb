@@ -1,4 +1,5 @@
 module CancellationsModule
+  extend self
 
   def get_cancellations
     cancelled_bookings = Booking.find_all_by_status("cancelled")
