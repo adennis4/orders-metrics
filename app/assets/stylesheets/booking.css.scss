@@ -150,12 +150,27 @@ path {
 .accordion-toggle {
   font-size: 18px;
   font-weight: bold;
+  margin-left: 20px;
+
 }
 
 .accordion-inner {
   font-size: 14px;
   padding-left: 25px;
   border: none;
+  margin-left: 20px;
+}
+
+.menu {
+  margin-top: 60px;
+  margin-left: 20px;
+}
+
+.menu .item {
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  padding: 8px 15px;
 }
 
 svg {
