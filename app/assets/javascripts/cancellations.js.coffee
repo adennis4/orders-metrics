@@ -11,7 +11,7 @@ brushMargin =
   left: 80
 
 graphWidth = 960 - mainMargin.left - mainMargin.right
-height = 500 - mainMargin.top - mainMargin.bottom
+mainHeight = 500 - mainMargin.top - mainMargin.bottom
 brushHeight = 500 - brushMargin.top - brushMargin.bottom
 
 formatDate = d3.time.format("%d %b %Y")
@@ -19,21 +19,21 @@ formatDate = d3.time.format("%d %b %Y")
 x = d3.time.scale().range([0, graphWidth])
 x2 = d3.time.scale().range([0, graphWidth])
 
-y = d3.scale.linear().range([height, 0])
+y = d3.scale.linear().range([mainHeight, 0])
 y2 = d3.scale.linear().range([brushHeight, 0])
 
-xAxis = d3.svg.axis().scale(x).orient("bottom")
-xAxis2 = d3.svg.axis().scale(x2).orient("bottom")
+xAxisMain = d3.svg.axis().scale(x).orient("bottom")
+xAxisBrush = d3.svg.axis().scale(x2).orient("bottom")
 yAxis = d3.svg.axis().scale(y).orient("left")
 
 brush = d3.svg.brush().x(x2).on("brush", brush)
 
-area = d3.svg.area().interpolate("monotone")
+area = d3.svg.area()
   .x((d) -> x d.date)
-  .y0(height)
+  .y0(mainHeight)
   .y1((d) -> y d.count)
 
-area2 = d3.svg.area().interpolate("monotone")
+area2 = d3.svg.area()
   .x((d) -> x2 d.date)
   .y0(brushHeight)
   .y1((d) -> y2 d.count)
@@ -41,19 +41,19 @@ area2 = d3.svg.area().interpolate("monotone")
 svg = d3.select("#main-graph")
   .append("svg")
   .attr("width", graphWidth + mainMargin.left + mainMargin.right)
-  .attr("height", height + mainMargin.top + mainMargin.bottom)
+  .attr("height", mainHeight + mainMargin.top + mainMargin.bottom)
 
 svg.append("defs")
    .append("clipPath")
    .attr("id", "clip")
    .append("rect")
    .attr("width", graphWidth)
-   .attr("height", height)
+   .attr("height", mainHeight)
 
-focus = svg.append("g")
+graphMain = svg.append("g")
   .attr("transform", "translate(" + mainMargin.left + "," + mainMargin.top + ")")
 
-context = svg.append("g")
+graphBrush = svg.append("g")
   .attr("transform", "translate(" + brushMargin.left + "," + brushMargin.top + ")")
 
 d3.csv "../cancellations.csv", (data) ->
@@ -66,32 +66,37 @@ d3.csv "../cancellations.csv", (data) ->
   x2.domain x.domain()
   y2.domain y.domain()
 
-  focus.append("path")
+  drawMainGraph(data)
+  drawBrushGraph(data)
+
+drawMainGraph = (data) ->
+  graphMain.append("path")
     .data([data])
     .attr("class", "cancellations")
     .attr("clip-path", "url(#clip)")
     .attr "d", area
 
-  focus.append("g")
+  graphMain.append("g")
     .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call xAxis
+    .attr("transform", "translate(0," + mainHeight + ")")
+    .call xAxisMain
   
-  focus.append("g")
+  graphMain.append("g")
     .attr("class", "y axis")
     .call yAxis
-  
-  context.append("path")
+
+drawBrushGraph = (data) ->
+  graphBrush.append("path")
     .data([data])
     .attr("class", "cancellations")
     .attr "d", area2
   
-  context.append("g")
+  graphBrush.append("g")
     .attr("class", "x axis")
       .attr("transform", "translate(0," + brushHeight + ")")
-      .call xAxis2
+      .call xAxisBrush
   
-  context.append("g")
+  graphBrush.append("g")
     .attr("class", "x brush")
     .call(brush)
     .selectAll("rect")
@@ -100,7 +105,7 @@ d3.csv "../cancellations.csv", (data) ->
 
 `function brush() {
   x.domain(brush.empty() ? x2.domain() : brush.extent());
-  focus.select("path").attr("d", area);
-  focus.select(".x.axis").call(xAxis);
+  graphMain.select("path").attr("d", area);
+  graphMain.select(".x.axis").call(xAxisMain);
 }
 `
