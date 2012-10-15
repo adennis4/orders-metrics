@@ -5,7 +5,6 @@ this.locationMap = (title, countByCounty, earliestDate) ->
     lastQuarter: +(new Date) - 90 * 24 * 60 * 60 * 1000
     lastMonth: +(new Date) - 30 * 24 * 60 * 60 * 1000
     lastWeek: +(new Date) - 7 * 24 * 60 * 60 * 1000
-    now: +(new Date)
 
   mapColor =
     bookings: 'Greens q'
