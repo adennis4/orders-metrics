@@ -66,7 +66,7 @@ describe Booking do
 
   describe '.get_bookings' do
     before(:each) do
-      @booking = Booking.new
+      @booking = Booking.create(valid_params)
       @booking.extend BookingsModule
     end
 
@@ -74,10 +74,10 @@ describe Booking do
       @booking.get_bookings.should be_an_instance_of Hash
     end
 
-    it 'has keys of booking_dates and number_of_bookings' do
+    it 'has keys of last booking date and last date count' do
       hash = @booking.get_bookings
-      hash.keys[0].should == :booking_dates
-      hash.keys[1].should == :number_of_bookings
+      hash.keys[0].should == :last_booking_date
+      hash.keys[1].should == :last_date_count
     end
   end
 end
