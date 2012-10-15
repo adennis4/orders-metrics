@@ -61,13 +61,15 @@ d3.csv "../cancellations.csv", (data) ->
     d.date = formatDate.parse(d.date)
     d.count = d.count
 
+  setDomain(data)
+  drawMainGraph(data)
+  drawBrushGraph(data)
+
+setDomain = (data) ->
   x.domain d3.extent(data.map((d) -> d.date))
   y.domain [0, d3.max(data.map((d) -> d.count))]
   x2.domain x.domain()
   y2.domain y.domain()
-
-  drawMainGraph(data)
-  drawBrushGraph(data)
 
 drawMainGraph = (data) ->
   graphMain.append("path")
