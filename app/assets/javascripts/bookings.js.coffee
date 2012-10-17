@@ -14,8 +14,6 @@ graphWidth = 960 - mainMargin.left - mainMargin.right
 mainHeight = 500 - mainMargin.top - mainMargin.bottom
 brushHeight = 500 - brushMargin.top - brushMargin.bottom
 
-formatDate = d3.time.format("%d %b %Y")
-
 x = d3.time.scale().range([0, graphWidth])
 x2 = d3.time.scale().range([0, graphWidth])
 
@@ -29,11 +27,13 @@ yAxis = d3.svg.axis().scale(y).orient("left")
 brush = d3.svg.brush().x(x2).on("brush", brush)
 
 area = d3.svg.area()
+  .interpolate("monotone")
   .x((d) -> x d.date)
   .y0(mainHeight)
   .y1((d) -> y d.count)
 
 area2 = d3.svg.area()
+  .interpolate("monotone")
   .x((d) -> x2 d.date)
   .y0(brushHeight)
   .y1((d) -> y2 d.count)
@@ -58,7 +58,7 @@ graphBrush = svg.append("g")
 
 d3.csv "../bookings.csv", (data) ->
   data.forEach (d) ->
-    d.date = formatDate.parse(d.date)
+    d.date = d3.time.format("%d %b %Y").parse(d.date)
     d.count = d.count
 
   setDomain(data)
@@ -66,8 +66,9 @@ d3.csv "../bookings.csv", (data) ->
   drawBrushGraph(data)
 
 setDomain = (data) ->
+  multiplier = 1.3
   x.domain d3.extent(data.map((d) -> d.date))
-  y.domain [0, d3.max(data.map((d) -> d.count))]
+  y.domain [0, multiplier*d3.max(data.map((d) -> d.count))]
   x2.domain x.domain()
   y2.domain y.domain()
 
@@ -104,6 +105,11 @@ drawBrushGraph = (data) ->
     .selectAll("rect")
     .attr("y", -6)
     .attr "height", brushHeight + 7
+
+# brush = ->
+#   x.domain (if brush.empty() then x2.domain() else brush.extent())
+#   graphMain.select("path").attr "d", area
+#   graphMain.select(".x.axis").call xAxisMain
 
 `function brush() {
   x.domain(brush.empty() ? x2.domain() : brush.extent());

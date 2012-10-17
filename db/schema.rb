@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121007162136) do
+ActiveRecord::Schema.define(:version => 20121016220101) do
 
   create_table "bookings", :force => true do |t|
     t.string   "name"
@@ -42,13 +42,5 @@ ActiveRecord::Schema.define(:version => 20121007162136) do
   end
 
   add_index "locations", ["fips_county_code"], :name => "index_locations_on_fips_county_code"
-
-  create_table "weathers", :force => true do |t|
-    t.integer  "location_id"
-    t.integer  "temperature"
-    t.string   "condition"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
 end

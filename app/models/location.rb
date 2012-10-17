@@ -33,6 +33,6 @@ class Location < ActiveRecord::Base
       location.save
     end
 
-    county_code == 0 ? nil : Location.find_by_fips_county_code(county_code).id
+    county_code == 0 ? nil : location.id
   end
 end

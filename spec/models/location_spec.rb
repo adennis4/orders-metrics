@@ -72,40 +72,38 @@ describe Location do
 
   describe 'locations module' do
     before(:each) do
-      @location = Location.new
-      @location.extend LocationsModule
       Booking.create(:name => "Getaways", :status => "confirmed", :ip_address => '0.0.0.0', :fips_county_code => 12345)
       Booking.create(:name => "Getaways", :status => "cancelled", :ip_address => '0.0.0.0', :fips_county_code => 54321)
     end
 
     describe 'get_booking_locations' do
       it 'returns an array' do
-        @location.get_booking_locations.should be_an_instance_of Array
+        LocationsModule::get_booking_locations.should be_an_instance_of Array
       end
 
       it 'returns selection with a county_code for each booking' do
-        first_county_code = @location.get_booking_locations.first["county_code"]
+        first_county_code = LocationsModule::get_booking_locations.first["county_code"]
         first_county_code.should == 12345
       end
 
       it 'returns selection with a count equal to number of matching county codes' do
-        first_count = @location.get_booking_locations.first["count"]
+        first_count = LocationsModule::get_booking_locations.first["count"]
         first_count.should == 1
       end
     end
 
     describe 'get_cancellation_locations' do
       it 'returns an array' do
-        @location.get_cancellation_locations.should be_an_instance_of Array
+        LocationsModule::get_cancellation_locations.should be_an_instance_of Array
       end
 
       it 'returns selection with county code for each cancellation' do
-        first_county_code = @location.get_cancellation_locations.first["county_code"]
+        first_county_code = LocationsModule::get_cancellation_locations.first["county_code"]
         first_county_code.should == 54321
       end
 
       it 'returns selection with a count equal to number of matching county codes' do
-        first_count = @location.get_cancellation_locations.first["count"]
+        first_count = LocationsModule::get_cancellation_locations.first["count"]
         first_count.should == 1
       end
     end

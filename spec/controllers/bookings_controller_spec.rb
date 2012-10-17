@@ -19,14 +19,14 @@ describe BookingsController do
 
     it 'knows the total number of confirmed bookings' do
       get :index
-      Booking.all.count.should == 1
+      Booking.count.should == 1
     end
 
     it 'knows the count of confirmed bookings when one is added' do
-      original_count = Booking.all.count
+      original_count = Booking.count
       Booking.create(:name => "Another", :status => 'confirmed', :ip_address => '3.0.0.0')
       get :index
-      Booking.all.count.should == original_count + 1
+      Booking.count.should == original_count + 1
     end
   end
 end

@@ -1,4 +1,5 @@
 module LocationsModule
+  extend self
 
   def get_booking_locations
     booking_selection = Booking.select("fips_county_code county_code, count(*) count, created_at")

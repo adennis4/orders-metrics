@@ -19,6 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 2.minutes do
+every 23.hours do
   rake "booking:add_entries", :environment => "development"
+end
+
+every 24.hours do
+  rake "write_to_csv:update_all"
 end

@@ -24,14 +24,14 @@ class Booking < ActiveRecord::Base
   def self.write_to_bookings_csv
     bookings_hash = BookingsModule::get_bookings
     CSV.open('public/bookings.csv', 'a+') do |csv|
-      csv << [bookings_hash[:last_booking_date].strftime("%m %b %Y"), bookings_hash[:last_date_count]]
+      csv << [bookings_hash[:last_booking_date].strftime("%d %b %Y"), bookings_hash[:last_date_count]]
     end
   end
 
   def self.write_to_cancellations_csv
     cancellations_hash = CancellationsModule::get_cancellations
     CSV.open('public/cancellations.csv', 'a+') do |csv|
-      csv << [cancellations_hash[:last_cancellation_date].strftime("%m %b %Y"), cancellations_hash[:last_date_count]]
+      csv << [cancellations_hash[:last_cancellation_date].strftime("%d %b %Y"), cancellations_hash[:last_date_count]]
     end
   end
 end

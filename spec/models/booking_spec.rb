@@ -39,15 +39,15 @@ describe Booking do
   describe '.add_booking' do
     it 'creates a new entry in bookings table' do
       Location.create(:fips_county_code => 17031)
-      count = Booking.all.count
+      count = Booking.count
       Booking.add_booking("Getaways", "confirmed", "205.178.65.113")
-      Booking.all.count.should == count + 1
+      Booking.count.should == count + 1
     end
 
     it 'creates an entry even if location is not set' do
-      count = Booking.all.count
+      count = Booking.count
       Booking.add_booking("Getaways", "confirmed", "0.0.0.0")
-      Booking.all.count.should == count + 1
+      Booking.count.should == count + 1
     end
   end
 
