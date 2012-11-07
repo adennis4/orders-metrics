@@ -1,4 +1,5 @@
-this.locationMap = (title, countByCounty, earliestDate) ->
+this.App ?= {}
+this.App.locationMap = (title, countByCounty, earliestDate) ->
 
   dateFilters =
     lastYear: +(new Date) - 365 * 24 * 60 * 60 * 1000
@@ -14,8 +15,7 @@ this.locationMap = (title, countByCounty, earliestDate) ->
     bookings: 'Booked:  '
     cancellations: 'Cancelled:  '
 
-  this.county = (filteredCounties) ->
-    # Something strange about jQuery's interaction with SVG
+  displayCounty = (filteredCounties) ->
     $("#map-layout path").attr('class', '')
     maxCount = getMaxCount(filteredCounties)
     for county in filteredCounties
@@ -57,4 +57,4 @@ this.locationMap = (title, countByCounty, earliestDate) ->
     _.filter countByCounty, (county) ->
       county.date_created > earliestDate
 
-  county filterBeforeDate(countByCounty, dateFilters[earliestDate])
+  displayCounty filterBeforeDate(countByCounty, dateFilters[earliestDate])

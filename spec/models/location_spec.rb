@@ -59,13 +59,13 @@ describe Location do
     it 'returns the county code on successful request' do
       Location.create(:fips_county_code => 17031)
       booking = Booking.create(:name => "Getaways", :status => "confirmed", :ip_address => "205.178.65.113")
-      location_id = Location.set_county_code(booking.id)
+      location_id = Location.set_county_code(booking)
       location_id.should == 1    
     end
 
     it 'returns nil and does not fail when county_code is 0' do
       booking = Booking.create(:name => "Getaways", :status => "confirmed", :ip_address => "0.0.0.0")
-      county_code = Location.set_county_code(booking.id)
+      county_code = Location.set_county_code(booking)
       county_code.should == nil
     end
   end

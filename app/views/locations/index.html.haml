@@ -1,4 +1,4 @@
-%h1 Getaways Metrics
+%h1.header Getaways Metrics
 
 .row-fluid
   .span2
@@ -27,11 +27,11 @@
           :javascript
             var Booking = Booking || {};
             Booking.locations = #{@locations.to_json};
-            this.locationMap("bookings", Booking.locations)
+            App.locationMap("bookings", Booking.locations)
         - if params[:title] == "cancellations"
           :javascript
             var Cancellation = Cancellation || {};
             Cancellation.locations = #{@locations.to_json};
-            this.locationMap("cancellations", Cancellation.locations)
+            App.locationMap("cancellations", Cancellation.locations)
 
         = render "shared/radio_buttons"

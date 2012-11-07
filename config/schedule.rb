@@ -24,5 +24,5 @@ every 23.hours do
 end
 
 every 24.hours do
-  rake "write_to_csv:update_all"
+  rake "write_to_csv:update_all", :environment => "development"
 end

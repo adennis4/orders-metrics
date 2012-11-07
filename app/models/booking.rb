@@ -16,7 +16,7 @@ class Booking < ActiveRecord::Base
   end
 
   def self.set_location(booking)
-    booking.location_id = Location.set_county_code(booking.id)
+    booking.location_id = Location.set_county_code(booking)
     booking.fips_county_code = Location.find(booking.location_id).fips_county_code if booking.location_id
     booking.save
   end

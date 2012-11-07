@@ -1,6 +1,6 @@
 class CancellationsController < ApplicationController
 
   def index
-    @title = "Cancellations - need to include more metrics in text"
+    @title = "Number of Daily Cancellations"
   end
 end

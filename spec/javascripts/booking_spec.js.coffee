@@ -1,3 +1,4 @@
-describe "bookingGraph", ->
+describe "drawMainGraph", ->
   
-  it 'returns an Array', ->
+  it "blah", ->
+    drawMainGraph()

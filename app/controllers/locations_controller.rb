@@ -2,13 +2,13 @@ class LocationsController < ApplicationController
 
   def index
     @title = params[:title]
-    @locations = select_graph(@title)
+    @locations = get_locations(@title)
   end
 
 
   private
 
-  def select_graph(title)
+  def get_locations(title)
     case title
     when "bookings"
       LocationsModule::get_booking_locations

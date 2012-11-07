@@ -18,8 +18,7 @@ class Location < ActiveRecord::Base
     xml_response.scan(/"(\d{5})\"/).flatten.first.to_i
   end
 
-  def self.set_county_code(booking_id)
-    booking = Booking.find(booking_id)
+  def self.set_county_code(booking)
     geolocation = get_location_from_ip_address(booking.ip_address)
     latitude = geolocation.lat
     longitude = geolocation.lng

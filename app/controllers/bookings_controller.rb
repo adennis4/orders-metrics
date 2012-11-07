@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
 
   def index
-    @title = "Bookings - need to include more metrics in text"
+    @title = "Number of Daily Bookings"
   end
 end
